@@ -1,11 +1,14 @@
+
 const { MongoClient } = require('mongodb')
 const client = new MongoClient(process.env.MONGODB_URI)
 let collection;
 
 async function startDatabase() {
-    await client.connect()
-    const db = client.db('music-library')
-    collection = db.collection('playlist')
+    if (!collection) {
+        await client.connect()
+        const db = client.db('music-library')
+        collection = db.collection('playlist')
+    }
 }
 
 async function showAll() {

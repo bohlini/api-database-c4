@@ -20,6 +20,7 @@ const init = async () => {
 init();
 
 app.get('/songs', async (req, res) => {
+    await startDatabase()
     const result = await showAll()
     if (result.length < 1) {
         res.status(404).send('No songs found')
@@ -29,6 +30,7 @@ app.get('/songs', async (req, res) => {
 })
 
 app.get('/songs/:artist', async (req, res) => {
+    await startDatabase()
     const result = await filterByArtist(req.params.artist)
     if (result.length < 1) {
         res.status(404).send('Artist not found')
@@ -38,6 +40,7 @@ app.get('/songs/:artist', async (req, res) => {
 })
 
 app.post('/songs/add', async (req, res) => {
+    await startDatabase()
     if (!/^\d{4}$/.test(req.body.year)) {
         return res.status(400).send('Year must be a 4-digit number')
     }
@@ -55,6 +58,7 @@ app.post('/songs/add', async (req, res) => {
 })
 
 app.delete('/songs/delete/:id', async (req, res) => {
+    await startDatabase()
     const result = await deleteSong(
         new ObjectId(req.params.id)
     )

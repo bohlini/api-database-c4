@@ -34,7 +34,7 @@ app.get('/songs', async (req, res) => {
     }
 })
 
-app.get('/songs/:artist', async (req, res) => {
+app.get('/artist/:artist', async (req, res) => {
     await startDatabase()
     const result = await filterByArtist(req.params.artist)
     if (result.length < 1) {

@@ -1,6 +1,6 @@
 GET http://localhost:3000/songs
 ###
-GET http://localhost:3000/songs/Mlii
+GET http://localhost:3000/artist/Mlii
 ###
 POST http://localhost:3000/songs/add
 Content-Type: application/json

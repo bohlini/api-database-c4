@@ -53,7 +53,8 @@ app.post('/songs/add', async (req, res) => {
         req.body.title,
         req.body.artist,
         req.body.album,
-        req.body.year
+        req.body.year,
+        req.body.theme
     )
     if (result.currentlyExisting) {
         res.status(409).send('Song already exist')

@@ -20,12 +20,17 @@ const init = async () => {
 init();
 
 app.get('/songs', async (req, res) => {
-    await startDatabase()
-    const result = await showAll()
-    if (result.length < 1) {
-        res.status(404).send('No songs found')
-    } else {
-        res.status(200).json(result)
+    try {
+        await startDatabase()
+        const result = await showAll()
+        if (result.length < 1) {
+            res.status(404).send('No songs found')
+        } else {
+            res.status(200).json(result)
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error.message)
     }
 })
 

@@ -25,7 +25,7 @@ async function filterByArtist(artist) {
     return await col.find({ artist }).toArray()
 }
 
-async function addSong(title, artist, album, year, theme, duration) {
+async function addSong(title, artist, album, year, theme, duration, img_url) {
     const col = await getCollection()
     const isExisting = await col.findOne({ title, artist })
     if (isExisting) {
